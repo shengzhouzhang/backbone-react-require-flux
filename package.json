@@ -1,0 +1,8 @@
+{
+  "name": "twitter-wikipedia-example",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "express": "~4.5.1"
+  }
+}
