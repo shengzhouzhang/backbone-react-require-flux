@@ -14,7 +14,7 @@ $ node server.js
 
 App Actions
 -----------
-Actions drive the process of the runing program. All actions are defined in
+Actions and handlers drive the process of the runing program. All actions are defined in
 
 ```
 public/actions/
