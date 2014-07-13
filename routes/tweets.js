@@ -13,21 +13,21 @@ define(function(require, exports, module) {
 
   var twitter = new TwitterAPI(config),
       error = function (err, response, body) {
-        console.log('ERROR [%s]', err);
+        console.log('ERROR [%s]', JSON.stringify(err));
       };
 
   exports.load = function(req, res) {
     var params = { count: '5'};
     twitter.getHomeTimeline(params, error, function (data) {
-      var list = JSON.parse(data),
-          result = list.map(function (item) {
-            return {
-              username: item.user.name,
-              tweet: item.text,
-              timestamp: item.created_at
-            };
-          });
-      res.send(result);
+      // var list = JSON.parse(data),
+      //     result = list.map(function (item) {
+      //       return {
+      //         username: item.user.name,
+      //         tweet: item.text,
+      //         timestamp: item.created_at
+      //       };
+      //     });
+      res.send(data);
     });
   };
 });

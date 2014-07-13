@@ -1,5 +1,5 @@
-define(['React', '../actions/actions', '../stores/tweets.store', 'Entities'], 
-       function (React, Actions, Store, Entities) {
+define(['React', '../actions/actions', '../stores/tweets.store', 'TweetEntity'], 
+       function (React, Actions, Store, TweetEntity) {
   'use strict';
 
   // Tweet View
@@ -25,11 +25,19 @@ define(['React', '../actions/actions', '../stores/tweets.store', 'Entities'],
       }
     },
 
+    componentDidMount: function () {
+      var tweet = TweetEntity.parse(this.props.tweet);
+      // a hack to show link
+      $(this.getDOMNode()).find('p').html(tweet);
+    },
+
     render: function () {
+      
+
       return (
         <div className="col-lg-12">
-          <h4>{this.props.username}</h4>
-          <p onMouseUp={this.handleMouseUp}>{this.props.tweet}</p>
+          <h4>{this.props.tweet.user.name}</h4>
+          <p onMouseUp={this.handleMouseUp}></p>
         </div>
       );
     }
@@ -62,7 +70,7 @@ define(['React', '../actions/actions', '../stores/tweets.store', 'Entities'],
     
     render: function () {
       var tweets = this.state.tweets.map(function(tweet){
-        return (<Tweet tweet={tweet.tweet} username={tweet.username} timestamp={tweet.timestamp} />);
+        return (<Tweet tweet={tweet} />);
       });
       return (<div className="tweets">{tweets}</div>)
     }

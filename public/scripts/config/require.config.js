@@ -10,7 +10,7 @@ require.config({
     JSX: '../../lib/jsx',
     JSXTransformer: '../../lib/JSXTransformer',
     Underscore: '../../lib/underscore',
-    Entities: '../../lib/twitter-entities'
+    TweetEntity: '../../lib/twitter-entities'
   },
   shim : {
     jQuery : {
