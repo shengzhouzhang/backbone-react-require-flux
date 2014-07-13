@@ -12,8 +12,8 @@ Loading tweets is a little bit slow, you can watch the actions log in Chrome Con
 $ node server.js
 ```
 
-App Actions
------------
+Actions
+-------
 Actions and handlers drive the process of the runing program. All actions are defined in
 
 ```
@@ -34,4 +34,13 @@ app
   |--tooltip
           |-- load tooltip
           |-- tooltip loaded
+```
+
+The architecture obeys the design of flux:
+
+```
+Views ---> (actions) ----> Dispatcher ---> (registered callback) ---> Stores -------+
+Ʌ                                                                                   |
+|                                                                                   V
++-- (Controller-Views "change" event handlers) ---- (Stores emit "change" events) --+
 ```
