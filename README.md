@@ -36,6 +36,9 @@ app
           |-- tooltip loaded
 ```
 
+Architecture
+------------
+
 The architecture obeys the design of flux:
 
 ```
@@ -43,4 +46,13 @@ Views ---> (actions) ----> Dispatcher ---> (registered callback) ---> Stores ---
 Ʌ                                                                                   |
 |                                                                                   V
 +-- (Controller-Views "change" event handlers) ---- (Stores emit "change" events) --+
+```
+
+Stores communicate APIs with Actions:
+
+```
+(Views "change" event handlers) ...   ... components ---> (emit "load" actions) ---> Dispatcher ---> APIs ---+
+Ʌ                                                                                                            |
+|                                                                                                            V
++---- (Stores emit "change" events) --- (Stores "loaded" event handlers) --- (APIs emit "loaded" actions) ---+
 ```
