@@ -19,6 +19,7 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         'server.js', 
         'routes/*.js', 
+        'test/*.js',
         'public/scripts/**/*.js'
       ]
     }

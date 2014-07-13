@@ -22,6 +22,9 @@
     "module": true,
     "require": true,
     "exports": true,
-    "console": true
+    "console": true,
+    "describe": true,
+    "it": true,
+    "document": true
   }
 }
