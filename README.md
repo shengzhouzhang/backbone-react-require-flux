@@ -3,15 +3,6 @@ backbone-react-require-flux
 
 An example of using node, express, backbone, react, require, twitter & wiki apis. It fetchs 10 tweets and pops up a tooltip of wiki search results by selecting keywords.
 
-How to Run it
--------------
-Clone the repo and run the following command, and navigate to [http://localhost:3000](http://localhost:3000).
-Loading tweets is a little bit slow, you can watch the actions log in Chrome Console.
-
-```sh
-$ node server.js
-```
-
 Actions
 -------
 Actions and handlers drive the process of the runing program. All actions are defined in
@@ -55,4 +46,13 @@ Stores communicate APIs with Actions:
 Ʌ                                                                                                 |
 |                                                                                                 V
 (Stores emit "change" events) --- (Stores "loaded" event handlers) --- (APIs emit "loaded" actions)
+```
+
+How to Run it
+-------------
+Clone the repo and run the following command, and navigate to [http://localhost:3000](http://localhost:3000).
+Loading tweets is a little bit slow, you can watch the actions log in Chrome Console.
+
+```sh
+$ node server.js
 ```
