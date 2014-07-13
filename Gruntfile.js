@@ -3,12 +3,6 @@ module.exports = function(grunt) {
   
   // Project configuration.
   grunt.initConfig({
-    jsx: {
-      client: {
-        src: 'public/scripts/components/tooltip.jsx',
-        dest: 'public/scripts/components/tooltip.js'
-      }
-    },
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -25,7 +19,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-jsx');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('linter', ['jshint']);
