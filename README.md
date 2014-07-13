@@ -36,8 +36,8 @@ app
           |-- tooltip loaded
 ```
 
-Architecture
-------------
+Design
+------
 
 The architecture obeys the design of flux:
 
