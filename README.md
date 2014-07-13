@@ -51,7 +51,7 @@ Views ---> (actions) ----> Dispatcher ---> (registered callback) ---> Stores ---
 Stores communicate APIs with Actions:
 
 ```
-(Views "change" event handlers) ...   ... components ---> (emit "load" actions) ---> Dispatcher ---> APIs ---+
+(Views "change" event handlers) ...     (anything)    ... (emit "load" actions) ---> Dispatcher ---> APIs ---+
 Ʌ                                                                                                            |
 |                                                                                                            V
 +---- (Stores emit "change" events) --- (Stores "loaded" event handlers) --- (APIs emit "loaded" actions) ---+
