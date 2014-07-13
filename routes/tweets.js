@@ -17,9 +17,17 @@ define(function(require, exports, module) {
       };
 
   exports.load = function(req, res) {
-    var params = { count: '2'};
+    var params = { count: '5'};
     twitter.getHomeTimeline(params, error, function (data) {
-      res.send(data);
+      var list = JSON.parse(data),
+          result = list.map(function (item) {
+            return {
+              username: item.user.name,
+              tweet: item.text,
+              timestamp: item.created_at
+            };
+          });
+      res.send(result);
     });
   };
 });

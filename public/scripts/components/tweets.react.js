@@ -1,19 +1,42 @@
-define(['React', '../stores/tweets'], 
-       function (React, Store) {
-  'use strict'
+define(['React', '../actions/actions', '../stores/tweets.store', 'Entities'], 
+       function (React, Actions, Store, Entities) {
+  'use strict';
 
-  function getTweets() { 
-    return { 
-      // tweets: Store.getTweets() 
-      tweets: ['haha', 'lala']
-    }; 
-  }
+  // Tweet View
+  // ----------
 
   var Tweet = React.createClass({
+
+    handleMouseUp: function (e) {
+      var selection = window.getSelection(),
+          text = selection.toString();
+
+      if(!!text) {
+
+        var rect = selection.getRangeAt(0).getBoundingClientRect(),
+            position = {
+              top: rect.top,
+              left: rect.left,
+              height: rect.height,
+              width: rect.width
+            };
+
+        Actions.loadTooltip(text, position);
+      }
+    },
+
     render: function () {
-      return (<li><h3>{this.props.tweet}</h3></li>);
+      return (
+        <div className="col-lg-12">
+          <h4>{this.props.username}</h4>
+          <p onMouseUp={this.handleMouseUp}>{this.props.tweet}</p>
+        </div>
+      );
     }
   });
+
+  // Tweet List View
+  // ---------------
 
   var Tweets = React.createClass({
 
@@ -24,36 +47,34 @@ define(['React', '../stores/tweets'],
     },
 
     componentDidMount: function () { 
-      // Store.addEventListener(this._onLoad); 
+      Store.addEventListener(this._onLoad); 
     },
 
     componentWillUnmount: function () { 
-      // Store.removeEventListener(this._onLoad); 
+      Store.removeEventListener(this._onLoad); 
     },
 
     _onLoad: function () {
-      var data = getTweets();
-      this.setState(data);
+      this.setState({ 
+        tweets: Store.getTweets() 
+      });
     },
     
     render: function () {
       var tweets = this.state.tweets.map(function(tweet){
-        return (<Tweet tweet={tweet} />);
+        return (<Tweet tweet={tweet.tweet} username={tweet.username} timestamp={tweet.timestamp} />);
       });
-      return (<div><ul>{tweets}</ul></div>)
+      return (<div className="tweets">{tweets}</div>)
     }
   });
 
   return {
 
     initial: function (container) {
-      this.container_ = container;
-    },
 
-    render: function () {
       React.renderComponent(
         <Tweets />, 
-        this.container_
+        container
       );
     }
   };

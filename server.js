@@ -4,6 +4,7 @@
 require("amd-loader");
 
 var express = require('express'),
+    bodyParser = require('body-parser'),
     path = require('path'),
     http = require('http'),
     tweets = require('./routes/tweets'),
@@ -12,6 +13,7 @@ var express = require('express'),
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
+app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/tweets', tweets.load);

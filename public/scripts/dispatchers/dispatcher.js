@@ -53,6 +53,13 @@ define(['jQuery'],
       });
     },
 
+    handleStoreAction: function(action) {
+      this.dispatch({
+        source: 'STORE_ACTION',
+        action: action
+      });
+    },
+
     handleServerAction: function(action) {
       this.dispatch({
         source: 'SERVER_ACTION',

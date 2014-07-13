@@ -1,42 +1,28 @@
-define(['jQuery', 'Dispatcher'], 
-       function ($, Dispatcher) {
+define(['jQuery', '../actions/tweets.actions', '../actions/tooltip.actions', '../dispatchers/dispatcher'], 
+       function ($, TweetsActions, TooltipActions, Dispatcher) {
   'use strict';
 
-  /**
-   * Sent Messages between Components
-   */
+  var actions = $.extend({
 
-  var actions = {
+    // APP actions
+    // -----------
 
-    CONNECTIONS_LOADED: 'CONNECTIONS_LOADED',
+    INITIAL_COMPONENTS: 'INITIAL_COMPONENTS',
     COMPONENTS_READY: 'COMPONENTS_READY',
-    LOGIN: 'LOGIN',
 
-    // call after get new connections
-    updateConnections: function(connections) {
-      Dispatcher.handleServerAction({
-        actionType: actions.CONNECTIONS_LOADED,
-        connections: connections
+    initialComponents: function() {
+      Dispatcher.handleViewAction({
+        actionType: actions.INITIAL_COMPONENTS
       });
     },
 
-    // call after all components are initialed
     componentsReady: function() {
       Dispatcher.handleViewAction({
         actionType: actions.COMPONENTS_READY
       });
     },
 
-    // call after login
-    login: function() {
-      Dispatcher.handleViewAction({
-        actionType: actions.LOGIN
-      });
-    },
-
-    register: Dispatcher.register
-
-  }; 
+  }, TweetsActions, TooltipActions);
 
   return actions;
  });

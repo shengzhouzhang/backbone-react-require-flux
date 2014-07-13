@@ -3,13 +3,14 @@ require.config({
 
   paths: {
     jQuery: '../../lib/jquery-2.1.0.min',
+    Bootstrap: '../../lib/bootstrap-3.2.0/js/bootstrap.min',
     React: '../../lib/react',
     Backbone: '../../lib/backbone',
     EventEmitter: '../../lib/EventEmitter-4.0.3.min',
     JSX: '../../lib/jsx',
     JSXTransformer: '../../lib/JSXTransformer',
     Underscore: '../../lib/underscore',
-
+    Entities: '../../lib/twitter-entities'
   },
   shim : {
     jQuery : {
@@ -23,6 +24,10 @@ require.config({
       exports: function() {
         return Backbone.noConflict();
       }
+    },
+    Bootstrap: {
+      deps: ['jQuery'],
+      exports: '$.fn.popover'
     }
   }
 });

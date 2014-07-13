@@ -1,13 +1,18 @@
-require(['JSX!../components/tweets.react'], 
-        function (Tweets) {
-  'use strict'
+require(['../actions/actions', 'JSX!../components/builder', 'JSX!../apis/apis'], 
+        function (Actions, Views, APIs) {
+  'use strict';
 
-  /**
-   * Load and Initial Components.
-   * Emit Ready Event when Components Ready
-   */
+  Actions.register(function(payload) { 
 
-  Tweets.initial(document.body);
-  
-  Tweets.render();
+    var action = payload.action; 
+
+    switch(action.actionType) {
+      case Actions.COMPONENTS_READY:
+        Actions.loadTweets();
+        break;
+    }
+    return true;
+  });
+
+  Actions.initialComponents();
  });
