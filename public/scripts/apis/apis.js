@@ -2,23 +2,29 @@ define(['jQuery', '../actions/actions', '../apis/tweets', '../apis/wikipedia'],
         function ($, Actions, Tweets, Wiki) {
   'use strict';
 
+  // Handle Server Actions
+  // ---------------------
+
   Actions.register(function(payload) { 
 
     var action = payload.action; 
 
     switch(action.actionType) {
       
-      case Actions.LOAD_TWEETS:
+      // Load Tweets
+      // -----------
 
-        // load tweets
+      case Actions.LOAD_TWEETS:
         Tweets.load(function (tweets) {
           Actions.updateTweets(tweets);
         });
         break;
 
+      // Load Tooltip
+      // ------------
+      
       case Actions.LOAD_TOOLTIP:
 
-        // search key words
         var keywords = action.keywords;
 
         if(!!keywords) {

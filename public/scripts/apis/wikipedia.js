@@ -1,17 +1,15 @@
-define(['jQuery'], 
-        function ($) {
+define(['jQuery', '../config/rest.config'], 
+        function ($, Config) {
   'use strict';
 
   return {
 
     search: function (keywords, cb) {
 
-      $.ajax({
-        url: 'http://localhost:3000/wiki',
-        type: 'POST',
+      var options = $.extend({
+
         data: JSON.stringify({ 'keywords': keywords }),
-        contentType: 'application/json',
-        dataType: 'json',
+        
         success: function (data) {
           
           var text = 'No Page Found.';
@@ -25,7 +23,10 @@ define(['jQuery'],
           }
           cb(text);
         }
-      });
+
+      }, Config.tooltip.load);
+
+      $.ajax(options);
     }
   };
 });

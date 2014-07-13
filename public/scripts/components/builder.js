@@ -1,6 +1,10 @@
-define(['jQuery', '../actions/actions', 'JSX!../components/tweets.react', 'JSX!../components/tooltip.react'], 
+define(['jQuery', '../actions/actions', 
+       'JSX!../components/tweets.react', 'JSX!../components/tooltip.react'], 
         function ($, Actions, Tweets, Tooltip) {
   'use strict';
+
+  // Handle View Actions
+  // -------------------
 
   Actions.register(function(payload) { 
 
@@ -8,7 +12,7 @@ define(['jQuery', '../actions/actions', 'JSX!../components/tweets.react', 'JSX!.
 
     switch(action.actionType) {
 
-      // initial all components
+      // Initial All Components
       // ----------------------
 
       case Actions.INITIAL_COMPONENTS: 
@@ -16,12 +20,11 @@ define(['jQuery', '../actions/actions', 'JSX!../components/tweets.react', 'JSX!.
         Tweets.initial($('#tweets-page')[0]);
         Tooltip.initial($('#tooltips-page')[0]);
 
-        // fire ready event after initializaton
         Actions.componentsReady();
         break; 
 
-      // update component states
-      // -----------------------
+      // Render Tooltip
+      // --------------
 
       case Actions.LOAD_TOOLTIP: 
 

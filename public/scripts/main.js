@@ -2,6 +2,9 @@ require(['../actions/actions', '../components/builder', '../apis/apis'],
         function (Actions) {
   'use strict';
 
+  // Handle App Actions
+  // ------------------
+
   Actions.register(function(payload) { 
 
     var action = payload.action; 
@@ -11,8 +14,13 @@ require(['../actions/actions', '../components/builder', '../apis/apis'],
         Actions.loadTweets();
         break;
     }
+    
     return true;
   });
 
+  // Dispatch App Actions
+  // --------------------
+
   Actions.initialComponents();
- });
+
+});

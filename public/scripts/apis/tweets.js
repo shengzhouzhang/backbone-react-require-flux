@@ -1,19 +1,20 @@
-define(['jQuery'], 
-        function ($) {
+define(['jQuery', '../config/rest.config'], 
+        function ($, Config) {
   'use strict';
 
   return {
 
     load: function (cb) {
 
-      $.ajax({
-        url: 'http://localhost:3000/tweets',
-        type: 'GET',
-        dataType: 'json',
+      var options = $.extend({
+        
         success: function (data) {
           cb(data);
         }
-      });
+
+      }, Config.tweets.load);
+
+      $.ajax(options);
     }
   };
 });

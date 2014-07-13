@@ -55,7 +55,7 @@ define(['jQuery', 'Backbone', 'EventEmitter', '../actions/actions'],
     switch(action.actionType) { 
       case Actions.TWEETS_LOADED:
 
-        // update collection
+        // update tweets collection
         store.add(action.tweets);
         break; 
     }
@@ -64,6 +64,6 @@ define(['jQuery', 'Backbone', 'EventEmitter', '../actions/actions'],
 
   // return store as model
   // ---------------------
-  
+
   return store;
 });

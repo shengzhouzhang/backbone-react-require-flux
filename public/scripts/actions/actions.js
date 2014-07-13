@@ -4,7 +4,7 @@ define(['jQuery', '../actions/tweets.actions', '../actions/tooltip.actions', '..
 
   var actions = $.extend({
 
-    // APP actions
+    // APP Actions
     // -----------
 
     INITIAL_COMPONENTS: 'INITIAL_COMPONENTS',

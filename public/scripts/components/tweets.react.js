@@ -1,4 +1,5 @@
-define(['React', '../actions/actions', '../stores/tweets.store', 'TweetEntity'], 
+define(['React', '../actions/actions', 
+       '../stores/tweets.store', 'TweetEntity'], 
        function (React, Actions, Store, TweetEntity) {
   'use strict';
 
@@ -6,6 +7,9 @@ define(['React', '../actions/actions', '../stores/tweets.store', 'TweetEntity'],
   // ----------
 
   var Tweet = React.createClass({
+
+    // Dispatch Tooltip Action
+    // -----------------------
 
     handleMouseUp: function (e) {
       var selection = window.getSelection(),
@@ -25,15 +29,16 @@ define(['React', '../actions/actions', '../stores/tweets.store', 'TweetEntity'],
       }
     },
 
+    // Prettify Tweet
+    // --------------
+
     componentDidMount: function () {
       var tweet = TweetEntity.parse(this.props.tweet);
-      // a hack to show link
+      // a hack to show the links of tweet
       $(this.getDOMNode()).find('p').html(tweet);
     },
 
     render: function () {
-      
-
       return (
         <div className="col-lg-12">
           <h4>{this.props.tweet.user.name}</h4>
@@ -43,8 +48,8 @@ define(['React', '../actions/actions', '../stores/tweets.store', 'TweetEntity'],
     }
   });
 
-  // Tweet List View
-  // ---------------
+  // Tweet Connection View
+  // ---------------------
 
   var Tweets = React.createClass({
 
@@ -62,12 +67,18 @@ define(['React', '../actions/actions', '../stores/tweets.store', 'TweetEntity'],
       Store.removeEventListener(this._onLoad); 
     },
 
+    // Load from Store, Tweet Collection
+    // ---------------------------------
+
     _onLoad: function () {
       this.setState({ 
         tweets: Store.getTweets() 
       });
     },
     
+    // Render a list of Tweet View 
+    // ---------------------------
+
     render: function () {
       var tweets = this.state.tweets.map(function (tweet) {
         return (<Tweet key={tweet.id} tweet={tweet} />);
@@ -76,14 +87,21 @@ define(['React', '../actions/actions', '../stores/tweets.store', 'TweetEntity'],
     }
   });
 
+  // Return Initial Method
+  // ---------------------
+
   return {
+
+    component: null,
 
     initial: function (container) {
 
-      React.renderComponent(
-        <Tweets />, 
-        container
-      );
+      if(!this.component) {
+        this.component = React.renderComponent(
+          <Tweets />, 
+          container
+        );
+      }
     }
   };
 });

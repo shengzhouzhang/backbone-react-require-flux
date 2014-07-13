@@ -1,4 +1,5 @@
-define(['React', '../actions/actions', '../stores/tooltip.store', 'jQuery', 'Bootstrap'], 
+define(['React', '../actions/actions', 
+       '../stores/tooltip.store', 'jQuery', 'Bootstrap'], 
        function (React, Actions, Store, $) {
   'use strict';
 
@@ -22,6 +23,9 @@ define(['React', '../actions/actions', '../stores/tooltip.store', 'jQuery', 'Boo
       };
     },
 
+    // Hide Bootstrap Button
+    // ---------------------
+
     componentDidMount: function () { 
       Store.addEventListener(this._onLoad);
       $(this.getDOMNode()).hide();
@@ -31,7 +35,9 @@ define(['React', '../actions/actions', '../stores/tooltip.store', 'jQuery', 'Boo
       Store.removeEventListener(this._onLoad); 
     },
 
-    // update position of tooltip
+    // Click Bootstrap Button and Show Tooltip
+    // ---------------------------------------
+
     componentDidUpdate: function () {
 
       $(this.getDOMNode())
@@ -48,25 +54,37 @@ define(['React', '../actions/actions', '../stores/tooltip.store', 'jQuery', 'Boo
       $('h3.popover-title').html(this.state.tooltip.keywords);
     },
 
+    // Load from Store, Tooltip Model
+    // ------------------------------
+
     _onLoad: function () {
       this.setState({ 
         tooltip: Store.getTooltip() 
       });
     },
 
-    handleClick: function () {
+    handleClick: function (event) {
+      event.preventDefault();
       $(this.getDOMNode()).popover('toggle');
     },
+
+    // Render a Bootstrap Button
+    // -------------------------
 
     render: function () {
       return (
         <button type="button" className="btn" data-toggle="popover" 
-        title={this.state.tooltip.keywords} data-content={this.state.tooltip.wikitext}
+        title={this.state.tooltip.keywords} 
+        data-content={this.state.tooltip.wikitext}
+        data-placement="right"
           onClick={this.handleClick}>
         </button>
       );
     }
   });
+
+  // Return Initial & Render Method
+  // ------------------------------
 
   return {
 
@@ -74,13 +92,16 @@ define(['React', '../actions/actions', '../stores/tooltip.store', 'jQuery', 'Boo
 
     initial: function (container) {
 
-      this.component = React.renderComponent(
-        <Tooltip />, 
-        container
-      );
+      if(!this.component) {
+        this.component = React.renderComponent(
+          <Tooltip />, 
+          container
+        );
+      }
     },
 
     render: function (keywords, position) {
+      if(!this.component) return;
 
       var state = {
         tooltip: {

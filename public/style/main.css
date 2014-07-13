@@ -5,14 +5,17 @@
   }
 }
 
-ul.tweets {
-  list-style-type: none;
+div.tweets {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-ul.tweets > li > div.username {
-
+div.tweets > div:first-child {
+  border-top: 1px solid #ddd;
 }
 
-ul.tweets > li > div.tweet {
-  
+div.tweets > div {
+  min-height: 120px;
+  padding-top: 10px;
+  border-bottom: 1px solid #ddd;
 }

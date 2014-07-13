@@ -4,8 +4,8 @@ define(['jQuery', '../dispatchers/dispatcher'],
 
   var actions = {
 
-    // Tweets actions
-    // ------------------
+    // Tweets Actions
+    // --------------
 
     LOAD_TWEETS: 'LOAD_TWEETS',
     TWEETS_LOADED: 'TWEETS_LOADED',

@@ -4,8 +4,8 @@ define(['jQuery', '../dispatchers/dispatcher'],
 
   var actions = {
 
-    // Tooltip actions
-    // -------------------
+    // Tooltip Actions
+    // ---------------
 
     LOAD_TOOLTIP: 'LOAD_TOOLTIP',
     TOOLTIP_LOADED: 'TOOLTIP_LOADED',
