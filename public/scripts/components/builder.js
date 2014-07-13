@@ -1,5 +1,5 @@
-define(['../actions/actions', 'JSX!../components/tweets.react', 'JSX!../components/tooltip.react'], 
-        function (Actions, Tweets, Tooltip) {
+define(['jQuery', '../actions/actions', 'JSX!../components/tweets.react', 'JSX!../components/tooltip.react'], 
+        function ($, Actions, Tweets, Tooltip) {
   'use strict';
 
   Actions.register(function(payload) { 
@@ -13,8 +13,8 @@ define(['../actions/actions', 'JSX!../components/tweets.react', 'JSX!../componen
 
       case Actions.INITIAL_COMPONENTS: 
 
-        Tweets.initial(document.getElementById('tweets-page'));
-        Tooltip.initial(document.getElementById('tooltips-page'));
+        Tweets.initial($('#tweets-page')[0]);
+        Tooltip.initial($('#tooltips-page')[0]);
 
         // fire ready event after initializaton
         Actions.componentsReady();
@@ -27,7 +27,7 @@ define(['../actions/actions', 'JSX!../components/tweets.react', 'JSX!../componen
 
         // position {top, left}
         var keywords = action.keywords,
-            position = action.position
+            position = action.position;
 
         if(!!position && !!position.top && !!position.left) {
           Tooltip.render(keywords, position);

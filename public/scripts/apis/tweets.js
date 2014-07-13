@@ -8,8 +8,8 @@ define(['jQuery'],
 
       $.ajax({
         url: 'http://localhost:3000/tweets',
-        type: "GET",
-        dataType: "json",
+        type: 'GET',
+        dataType: 'json',
         success: function (data) {
           cb(data);
         }

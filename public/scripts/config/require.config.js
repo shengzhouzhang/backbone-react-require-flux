@@ -1,4 +1,5 @@
-require.config({
+require.config({  
+
   deps: ['JSX!../main'],
 
   paths: {
@@ -20,10 +21,7 @@ require.config({
       exports: 'JSXTransformer'
     },
     Backbone: {
-      deps: ['Underscore', 'jQuery'],
-      exports: function() {
-        return Backbone.noConflict();
-      }
+      deps: ['Underscore', 'jQuery']
     },
     Bootstrap: {
       deps: ['jQuery'],

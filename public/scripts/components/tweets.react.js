@@ -69,8 +69,8 @@ define(['React', '../actions/actions', '../stores/tweets.store', 'TweetEntity'],
     },
     
     render: function () {
-      var tweets = this.state.tweets.map(function(tweet){
-        return (<Tweet tweet={tweet} />);
+      var tweets = this.state.tweets.map(function (tweet) {
+        return (<Tweet key={tweet.id} tweet={tweet} />);
       });
       return (<div className="tweets">{tweets}</div>)
     }

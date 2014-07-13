@@ -35,14 +35,14 @@ define(['React', '../actions/actions', '../stores/tooltip.store', 'jQuery', 'Boo
     componentDidUpdate: function () {
 
       $(this.getDOMNode())
-        .css('position', 'absolute')
+        .css('position', 'fixed')
         .css('top', this.state.position.top)
         .css('left', this.state.position.left)
         .css('height', this.state.position.height)
         .css('width', this.state.position.width)
         .show();
 
-      $(this.getDOMNode()).trigger( "click" ).hide();
+      $(this.getDOMNode()).trigger('click').hide();
 
       // a hack to update tooltip title
       $('h3.popover-title').html(this.state.tooltip.keywords);
@@ -60,7 +60,7 @@ define(['React', '../actions/actions', '../stores/tooltip.store', 'jQuery', 'Boo
 
     render: function () {
       return (
-        <button type="button" className="btn btn-lg btn-danger" data-toggle="popover" 
+        <button type="button" className="btn" data-toggle="popover" 
         title={this.state.tooltip.keywords} data-content={this.state.tooltip.wikitext}
           onClick={this.handleClick}>
         </button>

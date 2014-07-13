@@ -1,44 +1,45 @@
-define(['Backbone', 'EventEmitter', '../actions/actions'], 
-       function (Backbone, EventEmitter, Actions) {
+define(['jQuery', 'Backbone', 'EventEmitter', '../actions/actions'], 
+       function ($, Backbone, EventEmitter, Actions) {
   'use strict';
 
   // Tooltip Model
   // -------------
 
-  var Tweet = Backbone.Model.extend({
-    defaults: {
-      keywords: '',
-      wikitext: ''
-    },
+  var Tooltip = Backbone.Model.extend({
   });
 
   // Tooltip Store
   // -------------
 
-  var baseClass = new EventEmitter(),
-      tooptip = {};
+  var baseClass = new EventEmitter();
 
   var store = $.extend({
 
-    LOAD_EVENT: 'LOAD_EVENT',
+    TOOLTIP_LOADED: 'TOOLTIP_LOADED',
+
+    tooltip: new Tooltip(),
 
     getTooltip: function () {
-      return tooptip;
+      return this.tooltip.toJSON();
     },
 
-    loaded: function () {
-      this.emitEvent(this.LOAD_EVENT); 
+    update: function (tooltip) {
+      this.tooltip.set(tooltip);
+      this.emitEvent(this.TOOLTIP_LOADED);
     },
 
     addEventListener: function (callback) {
-      this.addListener(this.LOAD_EVENT, callback);
+      this.addListener(this.TOOLTIP_LOADED, callback);
     },
 
     removeEventListener: function (callback) {
-      this.removeListener(this.LOAD_EVENT, callback);
+      this.removeListener(this.TOOLTIP_LOADED, callback);
     },
 
   }, baseClass);
+
+  // Handle Tooltip Actions
+  // ----------------------
 
   Actions.register(function(payload) { 
 
@@ -47,12 +48,15 @@ define(['Backbone', 'EventEmitter', '../actions/actions'],
     switch(action.actionType) { 
       case Actions.TOOLTIP_LOADED: 
 
-        tooptip = action.tooltip
-        store.loaded(); 
+        // update tooltip model
+        store.update(action.tooltip);
         break; 
     }
     return true;
   });
 
+  // return store as model
+  // ---------------------
+  
   return store;
 });

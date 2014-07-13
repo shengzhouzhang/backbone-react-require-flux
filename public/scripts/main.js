@@ -1,5 +1,5 @@
-require(['../actions/actions', 'JSX!../components/builder', 'JSX!../apis/apis'], 
-        function (Actions, Views, APIs) {
+require(['../actions/actions', '../components/builder', '../apis/apis'], 
+        function (Actions) {
   'use strict';
 
   Actions.register(function(payload) { 

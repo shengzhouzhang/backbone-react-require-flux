@@ -8,10 +8,10 @@ define(['jQuery'],
 
       $.ajax({
         url: 'http://localhost:3000/wiki',
-        type: "POST",
-        data: JSON.stringify({"keywords": keywords}),
+        type: 'POST',
+        data: JSON.stringify({ 'keywords': keywords }),
         contentType: 'application/json',
-        dataType: "json",
+        dataType: 'json',
         success: function (data) {
           
           var text = 'No Page Found.';

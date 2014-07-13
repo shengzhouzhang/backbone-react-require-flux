@@ -1,54 +1,53 @@
-define(['Backbone', 'EventEmitter', '../actions/actions'], 
-       function (Backbone, EventEmitter, Actions) {
+define(['jQuery', 'Backbone', 'EventEmitter', '../actions/actions'], 
+       function ($, Backbone, EventEmitter, Actions) {
   'use strict';
 
   // Tweet Model
   // -----------
 
   var Tweet = Backbone.Model.extend({
-    defaults: {
-      user: '',
-      tweet: '',
-      timestamp: ''
-    },
   });
 
   // Tweet Collection
   // ----------------
 
   var Tweets = Backbone.Collection.extend({
-    model: Tweet,
+    model: Tweet
   });
 
   // Tweet Store
   // -----------
 
-  var baseClass = new EventEmitter(),
-      tweets = new Tweets();
+  var baseClass = new EventEmitter();
 
   var store = $.extend({
 
-    LOAD_EVENT: 'TWEETS_LOADED',
+    TWEETS_LOADED: 'TWEETS_LOADED',
+
+    tweets: new Tweets(),
 
     getTweets: function () {
-      return tweets.toJSON();
+      return this.tweets.toJSON();
     },
 
-    loaded: function () {
-      this.emitEvent(this.LOAD_EVENT); 
+    add: function (tweets) {
+      this.tweets.add(tweets);
+      this.emitEvent(this.TWEETS_LOADED); 
     },
 
     addEventListener: function (callback) {
-      this.addListener(this.LOAD_EVENT, callback);
+      this.addListener(this.TWEETS_LOADED, callback);
     },
 
     removeEventListener: function (callback) {
-      this.removeListener(this.LOAD_EVENT, callback);
+      this.removeListener(this.TWEETS_LOADED, callback);
     },
 
   }, baseClass);
 
-  // emit event after data changed
+  // Handle Tweets Actions
+  // ---------------------
+
   Actions.register(function(payload) { 
 
     var action = payload.action; 
@@ -57,12 +56,14 @@ define(['Backbone', 'EventEmitter', '../actions/actions'],
       case Actions.TWEETS_LOADED:
 
         // update collection
-        tweets.add(action.tweets);
-        store.loaded(); 
+        store.add(action.tweets);
         break; 
     }
     return true;
   });
 
+  // return store as model
+  // ---------------------
+  
   return store;
 });

@@ -1,5 +1,5 @@
-define(function(require, exports, module) {
-  'use strict'
+define(function(require, exports) {
+  'use strict';
   
   var request = require('request');
 
@@ -15,7 +15,7 @@ define(function(require, exports, module) {
       console.log('Search: ', url);
 
       request(url, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
           res.send(body);
         }
       });
