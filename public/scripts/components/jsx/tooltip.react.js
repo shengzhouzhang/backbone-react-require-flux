@@ -7,7 +7,7 @@ define(['jQuery', 'React', '../actions/actions',
   // Tooltips View
   // -------------
 
-  var Tooltip = React.createClass({displayName: 'Tooltip',
+  var Tooltip = React.createClass({
 
     getInitialState: function () {
       return {
@@ -74,12 +74,12 @@ define(['jQuery', 'React', '../actions/actions',
 
     render: function () {
       return (
-        React.DOM.button( {type:"button", className:"btn", 'data-toggle':"popover", 
-        title:this.state.tooltip.keywords, 
-        'data-content':this.state.tooltip.wikitext,
-        'data-placement':"right",
-          onClick:this.handleClick}
-        )
+        <button type="button" className="btn" data-toggle="popover" 
+        title={this.state.tooltip.keywords} 
+        data-content={this.state.tooltip.wikitext}
+        data-placement="right"
+          onClick={this.handleClick}>
+        </button>
       );
     }
   });
@@ -95,7 +95,7 @@ define(['jQuery', 'React', '../actions/actions',
 
       if(!this.component) {
         this.component = React.renderComponent(
-          Tooltip(null ), 
+          <Tooltip />, 
           container
         );
       }

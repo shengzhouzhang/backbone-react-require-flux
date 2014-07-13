@@ -7,7 +7,7 @@ define(['jQuery', 'React', '../actions/actions',
   // Tweet View
   // ----------
 
-  var Tweet = React.createClass({displayName: 'Tweet',
+  var Tweet = React.createClass({
 
     // Dispatch Tooltip Action
     // -----------------------
@@ -41,10 +41,10 @@ define(['jQuery', 'React', '../actions/actions',
 
     render: function () {
       return (
-        React.DOM.div( {className:"col-lg-12"}, 
-          React.DOM.h4(null, this.props.tweet.user.name),
-          React.DOM.p( {onMouseUp:this.handleMouseUp})
-        )
+        <div className="col-lg-12">
+          <h4>{this.props.tweet.user.name}</h4>
+          <p onMouseUp={this.handleMouseUp}></p>
+        </div>
       );
     }
   });
@@ -52,7 +52,7 @@ define(['jQuery', 'React', '../actions/actions',
   // Tweet Connection View
   // ---------------------
 
-  var Tweets = React.createClass({displayName: 'Tweets',
+  var Tweets = React.createClass({
 
     getInitialState: function () {
       return {
@@ -82,9 +82,9 @@ define(['jQuery', 'React', '../actions/actions',
 
     render: function () {
       var tweets = this.state.tweets.map(function (tweet) {
-        return (Tweet( {key:tweet.id, tweet:tweet} ));
+        return (<Tweet key={tweet.id} tweet={tweet} />);
       });
-      return (React.DOM.div( {className:"tweets"}, tweets));
+      return (<div className="tweets">{tweets}</div>);
     }
   });
 
@@ -99,7 +99,7 @@ define(['jQuery', 'React', '../actions/actions',
 
       if(!this.component) {
         this.component = React.renderComponent(
-          Tweets(null ), 
+          <Tweets />, 
           container
         );
       }

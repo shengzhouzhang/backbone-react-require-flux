@@ -25,6 +25,7 @@
     "console": true,
     "describe": true,
     "it": true,
-    "document": true
+    "document": true,
+    "window": true
   }
 }
