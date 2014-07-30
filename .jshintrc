@@ -11,7 +11,7 @@
   "noempty": true,
   "nonew": true,
   "undef": true,
-  "strict": false,
+  "strict": true,
   "trailing": true,
 
   "quotmark": "single",
