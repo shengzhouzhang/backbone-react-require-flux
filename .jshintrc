@@ -1,31 +1,32 @@
 {
-  "asi": false,
   "bitwise": true,
-  "browser": false,
-  "curly": false,
+  "curly": true,
   "eqeqeq": true,
-  "eqnull": true,
-  "esnext": true,
+  "forin": true,
+  "freeze": true,
   "immed": true,
-  "latedef": false,
+  "latedef": true,
   "newcap": true,
   "noarg": true,
+  "noempty": true,
   "nonew": true,
-  "quotmark": false,
   "undef": true,
-  "unused": "vars",
   "strict": false,
-  "trailing": false,
-  "validthis": true,
-  "globals": {
-    "define": true,
-    "module": true,
-    "require": true,
-    "exports": true,
-    "console": true,
-    "describe": true,
-    "it": true,
-    "document": true,
-    "window": true
-  }
+  "trailing": true,
+
+  "quotmark": "single",
+  "maxlen": 80,
+  "indent": 2,
+
+  "eqnull": true,
+  "expr": true,
+  "esnext": true,
+
+  "browser": true,
+  "node": true,
+
+  "predef": [
+    "define",
+    "__dirname"
+  ]
 }
